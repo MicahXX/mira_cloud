@@ -1,76 +1,86 @@
-header{
+header {
     position: relative;
     top: 0;
     left: 0;
-    width:100%;
+    width: 100%;
     background-color: #1e1f22;
     color: white;
     display: flex;
     justify-content: space-between;
-
-    div{
-        display: flex;
-        align-items: center;
-    }
-
-    h2{
-        margin: 1rem;
-    }
-
-    .pfp{
-        padding: 1rem;
-        border-left: 1px white solid;
-    }
-
-    img{
-        background-color: #ff0000;
-        height: 4rem;
-        width: 4rem;
-        text-align: center;
-        border-radius: 50%;
-    }
 }
 
-main{
+header div {
+    display: flex;
+    align-items: center;
+}
+
+header h2 {
+    margin: 1rem;
+}
+
+header img {
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+}
+
+.cloudLogo img {
+    border-radius: 100%;
+    padding-right: 0.7rem;
+}
+
+.pfp img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-right: 1.2rem;
+}
+
+.pfp img:hover {
+    border-color: #04c8ea;
+}
+
+main {
     display: flex;
     width: 100%;
-
-    input{
-        border: #1e1f22 1px solid;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        padding: 0.5rem;
-        width: 30rem;
-    }
-
-    button{
-        width: 10rem;
-        height: 3rem;
-        align-self: center;
-    }
 }
 
-.main{
+main input {
+    border: #1e1f22 1px solid;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    width: 30rem;
+}
+
+main button {
+    width: 10rem;
+    height: 3rem;
+    align-self: center;
+}
+
+.main {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin: 1.5rem;
 }
 
-.navbar{
+.navbar {
     width: 10%;
     border-right: #1e1f22 1px solid;
-
-    nav{
-        height: 89vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
 }
 
-li{
+.navbar nav {
+    height: 89vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li {
     list-style: none;
     text-align: center;
     font-size: 1rem;
@@ -78,4 +88,31 @@ li{
     cursor: pointer;
 }
 
+.header-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0.5rem;
+    top: 4.5rem;
+    background: #2a2b2e;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.dropdown-menu p {
+    margin: 0;
+    cursor: pointer;
+}
+
+.dropdown-menu p:hover {
+    color: #58a6ff;
+}
 

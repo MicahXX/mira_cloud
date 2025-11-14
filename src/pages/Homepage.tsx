@@ -1,72 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
-import * as domain from "node:domain";
+import React, { useState } from 'react';
 import "./Homepage.css";
+import cloudLogo from "./cloud.svg";
+import pfp from "./pfp.svg";
 
 function Homepage() {
-  return (
-      <body>
-          <header>
+
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    return (
+        <>
+            <header>
                 <div>
-                        (so Wolken logo)
-                      <h1>
-                          Cloud Storage
-                      </h1>
-                  </div>
-                  <div>
-                    <h2>
-                        upgrade
-                    </h2>
-                    <h2>
-                        settings
-                    </h2>
-                <div>
+                    <div className="cloudLogo">
+                        <img src={cloudLogo} alt="logo"/>
+                    </div>
+                    <h1>Cloud Storage</h1>
+                </div>
 
-                  </div>
-                      <div className={"pfp"}>
-                          <img src="" alt="pfp"/>
+                <div className="header-right">
 
-                      </div>
-              </div>
-          </header>
+                    {menuOpen && (
+                        <div className="dropdown-menu">
+                            <p>Upgrade</p>
+                            <p>Settings</p>
+                        </div>
+                    )}
 
-          <main>
-              <section className="navbar">
-                  <nav>
-                      <div>
-                          <li>
-                              home
-                          </li>
-                          <li>
-                              Recent
-                          </li>
-                          <li>
-                              Favorites
-                          </li>
-                          <li>
-                              Trash
-                          </li>
-                      </div>
+                    <div
+                        className="pfp"
+                        onClick={() => setMenuOpen(prev => !prev)}
+                        style={{ cursor: "pointer" }}
+                    >
+                        <img src={pfp} alt="pfp" />
+                    </div>
+                </div>
+            </header>
 
-                      <div>
-                          Storage
-                          <br/>
-                          balken
-                      </div>
-                  </nav>
-              </section>
+            <main>
+                <section className="navbar">
+                    <nav>
+                        <div>
+                            <li>home</li>
+                            <li>Recent</li>
+                            <li>Favorites</li>
+                            <li>Trash</li>
+                        </div>
 
-              <section className="main">
-                  <div>
-                      <input type="search" placeholder="Search"/>
-                  </div>
-                  <div>
-                      <button>+ upload</button>
-                  </div>
-              </section>
-          </main>
-      </body>
-  );
+                        <div>
+                            Storage
+                            <br />
+                            balken
+                        </div>
+                    </nav>
+                </section>
+
+                <section className="main">
+                    <div className="search">
+                        <input type="search" placeholder="Search" />
+                    </div>
+                    <div className="upload">
+                        <button>upload</button>
+                    </div>
+                </section>
+            </main>
+        </>
+    );
 }
 
 export default Homepage;
