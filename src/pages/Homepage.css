@@ -48,6 +48,7 @@ main {
 
 main input {
     border: #1e1f22 1px solid;
+    background: #f5f5f7;
     border-radius: 5px;
     font-size: 1.2rem;
     padding: 0.5rem;
@@ -67,18 +68,82 @@ main button {
     margin: 1.5rem;
 }
 
-.navbar {
-    width: 10%;
-    border-right: #1e1f22 1px solid;
-}
-
-.navbar nav {
-    height: 89vh;
+/* SIDEBAR */
+.sidebar {
+    width: 180px;
+    height: 170%;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* MENU */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    padding: 5px 10px;
+    background: #f5f5f7;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+    display: flex;
     align-items: center;
 }
+
+.menu-item:hover {
+    background: #dfeaff;
+}
+
+.menu-item.active {
+    background: #bdd7ff;
+    font-weight: bold;
+}
+
+/* STORAGE BOX */
+.storage-box {
+    background: #f6f6f6;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+}
+
+.storage-box h4 {
+    margin: 0 0 10px 0;
+}
+
+.storage-bar {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.storage-fill {
+    width: 12%;
+    height: 100%;
+    background: #4a8cff;
+    border-radius: 10px;
+    transition: width 0.5s;
+}
+
+.storage-info {
+    font-size: 14px;
+    color: #555;
+}
+
 
 li {
     list-style: none;
@@ -112,7 +177,7 @@ li {
     cursor: pointer;
 }
 
-.dropdown-menu p:hover {
+.dropdown-menu :hover {
     color: #58a6ff;
 }
 
