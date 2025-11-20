@@ -33,11 +33,11 @@ function Homepage() {
     }
 
     return (
-        <>
+        <div className="layout">
             <header>
                 <div>
                     <div className="cloudLogo">
-                        <img src={cloudLogo} alt="logo" />
+                        <img src={cloudLogo} alt="logo"/>
                     </div>
                     <h1>Cloud Storage</h1>
                 </div>
@@ -48,12 +48,12 @@ function Homepage() {
                             <p>Upgrade</p>
                             <p>Settings</p>
 
-                            <label style={{ cursor: "pointer"}}>
+                            <label style={{cursor: "pointer"}}>
                                 Profilbild
                                 <input
                                     type="file"
                                     accept="image/*"
-                                    style={{ display: "none" }}
+                                    style={{display: "none"}}
                                     onChange={handleImageChange}
                                 />
                             </label>
@@ -63,46 +63,59 @@ function Homepage() {
                     <div
                         className="pfp"
                         onClick={() => setMenuOpen(prev => !prev)}
-                        style={{ cursor: "pointer" }}
+                        style={{cursor: "pointer"}}
                     >
-                        <img src={profileImg} alt="pfp" />
+                        <img src={profileImg} alt="pfp"/>
                     </div>
                 </div>
             </header>
 
-            <main>
-                <section className="navbar">
-                    <nav className="sidebar">
-                        <ul className="menu">
-                            <li className="menu-item active">Home</li>
-                            <li className="menu-item">Recent</li>
-                            <li className="menu-item">Favorites</li>
-                            <li className="menu-item">Trash</li>
-                        </ul>
+            <aside className="sidebar">
+                <ul className="menu">
+                    <li className="menu-item active">Home</li>
+                    <li className="menu-item">Recent</li>
+                    <li className="menu-item">Favorites</li>
+                    <li className="menu-item">Trash</li>
+                </ul>
 
-                        <div className="storage-box">
-                            <h4>Storage</h4>
-                            <div className="storage-bar">
-                                <div className="storage-fill"></div>
-                            </div>
-                            <p className="storage-info">0.0 GB of 10 GB used</p>
-                        </div>
-                    </nav>
-                </section>
+                <div className="storage-box">
+                    <h4>Storage</h4>
+                    <div className="storage-bar">
+                        <div className="storage-fill"></div>
+                    </div>
+                    <p className="storage-info">0.0 GB of 10 GB used</p>
+                </div>
+            </aside>
 
-
-                <section className="main">
+            <main className="content">
+                <div className="search-upload">
                     <div className="search">
                         <input type="search" placeholder="Search" />
                     </div>
-
                     <div className="upload">
-                        <button>upload</button>
+                        <button>Upload</button>
                     </div>
-                </section>
+                </div>
+
+                {"Me testing things: "}
+                <div className="file-grid">
+                    <div className="file-card">
+                        <div className="file-icon">test1</div>
+                        <div className="file-name">Document1.pdf</div>
+                    </div>
+                    <div className="file-card">
+                        <div className="file-icon">test2</div>
+                        <div className="file-name">Notes.txt</div>
+                    </div>
+                    <div className="file-card">
+                        <div className="file-icon">test3</div>
+                        <div className="file-name">Image.png</div>
+                    </div>
+                </div>
             </main>
-        </>
+
+        </div>
     );
 }
 
-export default Homepage;
+    export default Homepage;
