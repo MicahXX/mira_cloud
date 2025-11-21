@@ -2,33 +2,46 @@ import React, { useState, useEffect } from 'react';
 import "./Homepage.css";
 import cloudLogo from "./mira_cloud2.png";
 import pfp from "./gast.png";
+import { get, set } from "idb-keyval";
 
 function Homepage() {
-    const [menuOpen, setMenuOpen] = useState(false);
     const [profileImg, setProfileImg] = useState<string>(pfp);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [settingsOpen, setSettingsOpen] = useState(false);
+    const [upgradeOpen, setUpgradeOpen] = useState(false);
 
-    // Profilbild aus LocalStorage laden
+    const files = [
+        { id: 1, name: "Anime" },
+        { id: 2, name: "Kirito" },
+        { id: 3, name: "W" }
+    ];
+
+    const filteredFiles = files.filter(file =>
+        file.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     useEffect(() => {
-        const savedImg = localStorage.getItem("profileImg");
-        if (savedImg) {
-            setProfileImg(savedImg);
-        }
+        get("profileImg").then((savedImg) => {
+            if (savedImg) setProfileImg(savedImg);
+        });
     }, []);
 
-    // Profilbild ändern
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];
         if (!file) return;
 
         const reader = new FileReader();
-        reader.onloadend = () => {
+        reader.onloadend = async () => {
             if (typeof reader.result === "string") {
                 const base64Image = reader.result;
-                setProfileImg(base64Image);
-                localStorage.setItem("profileImg", base64Image);
+                try {
+                    await set("profileImg", base64Image);
+                    setProfileImg(base64Image);
+                } catch (err) {
+                    console.error("IndexedDB error:", err);
+                }
             }
         };
-
         reader.readAsDataURL(file);
     }
 
@@ -42,31 +55,44 @@ function Homepage() {
                     <h1>Cloud Storage</h1>
                 </div>
 
+                {/* Header-right: hover opens menu */}
                 <div className="header-right">
-                    {menuOpen && (
-                        <div className="dropdown-menu">
-                            <p>Upgrade</p>
-                            <p>Settings</p>
+                    <div className="pfp-container">
+                        <div className="pfp">
+                            <img src={profileImg} alt="pfp" />
+                        </div>
 
-                            <label style={{cursor: "pointer"}}>
-                                Profilbild
+                        <div className="dropdown-menu">
+                            <p onClick={() => setUpgradeOpen(true)}>Upgrade</p>
+                            <p onClick={() => setSettingsOpen(true)}>Settings</p>
+
+                            <label>
+                                Profile
                                 <input
                                     type="file"
                                     accept="image/*"
-                                    style={{display: "none"}}
+                                    style={{ display: "none" }}
                                     onChange={handleImageChange}
                                 />
                             </label>
                         </div>
+                    </div>
+
+                    {upgradeOpen && (
+                        <div className="popup">
+                            <div className="popup-content">
+                                <button className="close-btn" onClick={() => setUpgradeOpen(false)}>Close</button>
+                            </div>
+                        </div>
                     )}
 
-                    <div
-                        className="pfp"
-                        onClick={() => setMenuOpen(prev => !prev)}
-                        style={{cursor: "pointer"}}
-                    >
-                        <img src={profileImg} alt="pfp"/>
-                    </div>
+                    {settingsOpen && (
+                        <div className="popup">
+                            <div className="popup-content">
+                                <button className="close-btn" onClick={() => setSettingsOpen(false)}>Close</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </header>
 
@@ -83,39 +109,35 @@ function Homepage() {
                     <div className="storage-bar">
                         <div className="storage-fill"></div>
                     </div>
-                    <p className="storage-info">0.0 GB of 10 GB used</p>
+                    <p className="storage-info">6.7 GB of 10 GB used</p>
                 </div>
             </aside>
 
             <main className="content">
                 <div className="search-upload">
                     <div className="search">
-                        <input type="search" placeholder="Search" />
+                        <input
+                            type="search"
+                            placeholder="Search"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                     </div>
                     <div className="upload">
                         <button>Upload</button>
                     </div>
                 </div>
 
-                {"Me testing things: "}
                 <div className="file-grid">
-                    <div className="file-card">
-                        <div className="file-icon">test1</div>
-                        <div className="file-name">Document1.pdf</div>
-                    </div>
-                    <div className="file-card">
-                        <div className="file-icon">test2</div>
-                        <div className="file-name">Notes.txt</div>
-                    </div>
-                    <div className="file-card">
-                        <div className="file-icon">test3</div>
-                        <div className="file-name">Image.png</div>
-                    </div>
+                    {filteredFiles.map(file => (
+                        <div className="file-card" key={file.id}>
+                            <div className="file-icon">{file.name}</div>
+                        </div>
+                    ))}
                 </div>
             </main>
-
         </div>
     );
 }
 
-    export default Homepage;
+export default Homepage;

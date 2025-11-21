@@ -52,11 +52,16 @@ header img {
     border-radius: 50%;
     border: 2px solid white;
     margin-right: 1.2rem;
+
+    object-fit: cover;
+    object-position: center;
+    background-color: #e9e9e9;
 }
 
 .pfp img:hover {
     border-color: #04c8ea;
 }
+
 
 /* MAIN CONTENT AREA */
 .content {
@@ -185,27 +190,93 @@ main button {
     align-items: center;
 }
 
-/* DROPDOWN MENU */
+/* Dropdown menu */
 .dropdown-menu {
     position: absolute;
-    right: 0.1rem;
-    top: 4.5rem;
-    background: #2a2b2e;
-    padding: 0.7rem 1rem;
-    border-radius: 10px;
-    border: 1px solid #444;
+    top: 55px;
+    right: 10px;
+    background: #111;
+    border-radius: 0.4rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    padding: 0.2rem 0;
+    width: 80px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    align-items: stretch;
 }
 
-.dropdown-menu p {
+/* Show menu on hover */
+.pfp-container:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-menu p,
+.dropdown-menu label {
     margin: 0;
+    padding: 0.3rem 0.6rem;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-align: center;
 }
 
-.dropdown-menu :hover {
-    color: #58a6ff;
+.dropdown-menu p:hover,
+.dropdown-menu label:hover {
+    background: #333;
+    color: #04c8ea;
+    border-radius: 0.6rem;
+}
+
+/* Dark overlay */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+/* Window */
+.popup-content {
+    background: white;
+    padding: 2rem;
+    width: 350px;
+    border-radius: 0.8rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+/* Close button */
+.close-btn {
+    margin-top: 1.5rem;
+    background: #04c8ea;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.close-btn:hover {
+    background: #03adc8;
 }
 
 /* Container for search + upload button */
@@ -214,6 +285,34 @@ main button {
     justify-content: space-between;
     margin-bottom: 1.5rem;
 }
+
+.upload button {
+    background: #f3f3f3;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.upload button:hover {
+    background: #04c8ea;
+    color: white;
+    border-color: #04c8ea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.upload button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
 
 /* FILE GRID */
 .file-grid {
