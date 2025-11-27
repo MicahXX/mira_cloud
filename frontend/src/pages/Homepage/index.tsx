@@ -4,7 +4,7 @@ import cloudLogo from "./mira_cloud2.png";
 import pfp from "./gast.png";
 import { get, set } from "idb-keyval";
 
-function Homepage() {
+function Index() {
     const [profileImg, setProfileImg] = useState<string>(pfp);
     const [searchTerm, setSearchTerm] = useState("");
     const [settingsOpen, setSettingsOpen] = useState(false);
@@ -140,4 +140,4 @@ function Homepage() {
     );
 }
 
-export default Homepage;
+export default Index;

@@ -3,8 +3,8 @@ const mysql2 = require("mysql2");
 
 const host = "127.0.0.1";
 const user = "root";
-const password = "";
-const database = "";
+const password = "BootEnte#0";
+const database = "mira_cloud";
 
 const pool = mysql2.createPool({
   host: host,
@@ -24,7 +24,7 @@ pool.getConnection((err, connection) => {
 });
 
 // test query
-/*
+
 const select = `SELECT * FROM users;`;
 
 pool.query(select, (err, result) => {
@@ -34,6 +34,6 @@ pool.query(select, (err, result) => {
     console.log(result);
   }
 });
-*/
+
 
 module.exports = pool;

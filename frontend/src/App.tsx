@@ -1,27 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import * as domain from "node:domain";
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-//import all pages
+// import pages
 import Homepage from "./pages/Homepage";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
-  return (
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/homepage">homepage</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Homepage />} />       {/* Root page */}
+                <Route path="/homepage" element={<Homepage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
