@@ -1,39 +1,33 @@
-// Database connection using mysql2 pool
+// db.js
+require("dotenv").config();
 const mysql2 = require("mysql2");
 
-const host = "127.0.0.1";
-const user = "root";
-const password = "mysql";
-const database = "mira_cloud";
-
 const pool = mysql2.createPool({
-  host: host,
-  user: user,
-  password: password,
-  database: database,
-  waitForConnections: true,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    waitForConnections: true,
 });
 
+// Test connection
 pool.getConnection((err, connection) => {
-  if (err) {
-    console.error("Database Connection Failed !!!", err);
-  } else {
-    console.log("Connected to Database " + host);
-    connection.release();
-  }
+    if (err) {
+        console.error("Database Connection Failed !!!", err);
+    } else {
+        console.log("Connected to Database " + process.env.DB_HOST);
+        connection.release();
+    }
 });
 
-// test query
-
+// Optional test query
 const select = `SELECT * FROM users;`;
-
 pool.query(select, (err, result) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(result);
-  }
+    if (err) {
+        console.error(err);
+    } else {
+        console.log(result);
+    }
 });
-
 
 module.exports = pool;
