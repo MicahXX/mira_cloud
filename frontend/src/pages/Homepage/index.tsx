@@ -63,9 +63,6 @@ function Index() {
                         </div>
 
                         <div className="dropdown-menu">
-                            <p onClick={() => setUpgradeOpen(true)}>Upgrade</p>
-                            <p onClick={() => setSettingsOpen(true)}>Settings</p>
-
                             <label>
                                 Profile
                                 <input
@@ -75,6 +72,8 @@ function Index() {
                                     onChange={handleImageChange}
                                 />
                             </label>
+                            <p onClick={() => setSettingsOpen(true)}>Settings</p>
+                            <p onClick={() => setUpgradeOpen(true)}>Upgrade</p>
                         </div>
                     </div>
 
