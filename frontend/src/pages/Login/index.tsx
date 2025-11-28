@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import styles from "./Login.module.css";
 
 function LoginForm() {
     const [formData, setFormData] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
     const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
 
-    // Check if user is already logged in when component mounts
     useEffect(() => {
         fetch('http://localhost:5555/post/session', {
             method: 'GET',
@@ -30,7 +30,7 @@ function LoginForm() {
             const res = await fetch('http://localhost:5555/post/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                credentials: 'include', // needed for sessions
+                credentials: 'include',
                 body: JSON.stringify(formData)
             });
 
@@ -49,13 +49,14 @@ function LoginForm() {
     };
 
     return (
-        <div>
+        <div className={styles.wrapper}>
             {loggedInUser ? (
-                <p style={{ color: 'green' }}>Logged in as: {loggedInUser}</p>
+                <p className={styles.success}>Logged in as: {loggedInUser}</p>
             ) : (
-                <form onSubmit={handleSubmit}>
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    {error && <p className={styles.error}>{error}</p>}
                     <input
+                        className={styles.input}
                         type="text"
                         name="username"
                         value={formData.username}
@@ -63,13 +64,14 @@ function LoginForm() {
                         placeholder="Username"
                     />
                     <input
+                        className={styles.input}
                         type="password"
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
                         placeholder="Password"
                     />
-                    <button type="submit">Login</button>
+                    <button className={styles.button} type="submit">Login</button>
                 </form>
             )}
         </div>

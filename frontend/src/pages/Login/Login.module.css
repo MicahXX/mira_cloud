@@ -1,10 +1,10 @@
-/* Signup.module.css */
+/* Login.module.css */
 .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #000;
+    background-color: #000; /* Schwarzer Hintergrund */
     color: #fff;
 }
 

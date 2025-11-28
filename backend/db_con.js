@@ -3,7 +3,7 @@ const mysql2 = require("mysql2");
 
 const host = "127.0.0.1";
 const user = "root";
-const password = "BootEnte#0";
+const password = "mysql";
 const database = "mira_cloud";
 
 const pool = mysql2.createPool({
